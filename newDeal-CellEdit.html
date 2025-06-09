@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+text-align: center;
+background-color: black;
+}
+canvas {
+
+      background-color: cyan;
+      margin: auto;
+      border-style: solid;
+      border-color: red;
+}
+
+
+.aliveCells {
+
+	background-color: yellow;
+}
+.button {
+height: 50px;
+}
+
+</style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+<br>
+<br>
+<input class="button" type="text" id="delayTime" placeholder="Enter delay time in milliseconds">
+<button class="button" onclick="setDelayTime()">Set delay time</button>
+
+<br>
+
+
+<input class="ifVar" type="text" id="a" placeholder="Enter a, default 2">
+<input class="ifVar" type="text" id="b" placeholder="Enter b, default 3">
+<input class="ifVar" type="text" id="c" placeholder="Enter c, default 3">
+
+
+
+<button class="button" id="sab" onclick="setAB()">
+   if CLN is less than A or CLN larger than B, then the cell dies.
+   But if a dead cell has exacly C alive neighbors, then it borns.
+   
+</button>
+
+<br>
+
+<button class="button" id="resetSquare" onclick="resetSquare()">Reset</button>
+
+
+
+
+
+
+
+<button class="button" id="update">Update</button>
+<button class="button" id="toggle-button">Toggle</button>
+<button class="button" id="random">Random</button>
+
+
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
+
+let squareSize = 5
+let columnNumber = 250
+let lineNumber = 250
+
+
+let wi = columnNumber * squareSize;
+let he = lineNumber * squareSize;
+
+canvas.width = wi;
+canvas.height = he;
+
+
+
+// ---------------------------- create all the squares, wich populates the canvas
+const square = [];
+const xi = 0;
+const yi = 0;
+const xf = 0;
+const yf = 0;
+const status = "dead";
+
+
+
+for (let i=0;i<columnNumber*lineNumber;i++) {
+
+square.push({"id": i, "xi": squareSize * (i - columnNumber * Math.floor(i / columnNumber)), "yi": squareSize * Math.floor(i / columnNumber), "xf": xi + squareSize, "yf": yi + squareSize, "status": "dead"});
+}
+
+
+
+
+
+function drawSquare(sq) {
+  if (sq.status === "alive") {
+
+    //    ctx.fillStyle = "cyan";
+
+    // Generate random RGB values
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+
+    // Set the fill color to the random RGB color
+    ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+
+
+  } else {
+    ctx.fillStyle = "black";
+  }
+  ctx.fillRect(sq.xi, sq.yi, sq.xf, sq.yf);
+}
+
+function toggleSquareStatus(sq) {
+  if (sq.status === "alive") {
+    sq.status = "dead";
+  } else {
+    sq.status = "alive";
+  }
+}
+
+function getSquare(x, y) {
+  const i = Math.floor(x / squareSize);
+  const j = Math.floor(y / squareSize);
+  return square[j * columnNumber + i];
+}
+
+function handleClick(e) {
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const sq = getSquare(x, y);
+  toggleSquareStatus(sq);
+  drawSquare(sq);
+}
+
+
+
+function CLN (x) {                                    // count the alive neighbours of square number x //
+let count = 0;
+
+
+
+
+if (typeof square[x - 1] !== "undefined" && square[x - 1].status === "alive") {count++} 
+if (typeof square[x + 1] !== "undefined" && square[x + 1].status === "alive") {count++} 
+if (typeof square[x - columnNumber] !== "undefined" && square[x - columnNumber].status === "alive") {count++} 
+if (typeof square[x + columnNumber] !== "undefined" && square[x + columnNumber].status === "alive") {count++} 
+if (typeof square[x - columnNumber - 1] !== "undefined" && square[x - columnNumber - 1].status === "alive") {count++} 
+if (typeof square[x - columnNumber + 1] !== "undefined" && square[x - columnNumber + 1].status === "alive") {count++} 
+if (typeof square[x + columnNumber -1] !== "undefined" && square[x + columnNumber -1].status === "alive") {count++} 
+if (typeof square[x + columnNumber + 1] !== "undefined" && square[x + columnNumber + 1].status === "alive") {count++} 
+
+//console.log(count);
+return count;
+}
+
+
+let a = 2;
+let b = 3;
+let c = 3;
+
+
+
+function updateSquares() {
+
+let square2 = []
+
+
+
+
+for (i=0;i<square.length;i++) {
+
+if (square[i].status === "alive") {
+
+if (CLN(i) < a || CLN(i) > b) {
+let newS = {...square[i], status: "dead"}
+
+square2.push(newS);
+}
+
+
+} if (square[i].status !== "alive") {
+if (CLN(i) === c) {
+let newS = {...square[i], status: "alive"}
+
+square2.push(newS);
+}
+}
+
+
+}                                             // end of "for (i=0;i<square.length;i++) {"
+
+for (i=0;i<square2.length;i++) {
+square[square2[i].id] = square2[i];
+
+drawSquare(square2[i]);
+
+}
+
+
+//console.log("a");
+
+}                                              //end of updateSquares()
+
+
+
+
+
+ 						// ------------------random button
+
+const buttonR = document.getElementById('random');
+buttonR.addEventListener('click', function() {
+let square2 = []
+
+for (let i=0;i < (0.1 * square.length); i++) {
+const min = 1; // minimum value
+const max = square.length; // maximum value
+const randomInt = Math.floor(Math.random() * (max - min + 1) + min);
+let newS = {...square[randomInt], status: "alive"}
+square2.push(newS);
+}
+for (i=0;i<square2.length;i++) {
+square[square2[i].id] = square2[i];
+
+drawSquare(square2[i]);
+
+}
+
+
+});
+
+
+			// -------------------Toggle button
+let delay = 80;
+
+
+const toggle = document.getElementById('toggle-button');
+
+// Set a flag to keep track of whether the simulation is running or not
+let isRunning = false;
+
+// Add an event listener to the button that toggles the flag
+toggle.addEventListener('click', function() {
+  isRunning = !isRunning;
+  if (isRunning) {
+    runSimulation();
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+// Define the function that runs the simulation
+function runSimulation() {
+  updateSquares();
+  if (isRunning) {
+    setTimeout(runSimulation, delay);
+  }
+}
+
+ function setDelayTime() {
+    let input = document.getElementById("delayTime").value;
+    if (!isNaN(input)) { // check if input is a number
+      delay = parseInt(input);
+    }
+}
+
+
+function setAB() {
+  let inputA = document.getElementById("a").value;
+  if (inputA.trim() !== "") {
+    if (!isNaN(inputA)) {
+      a = parseInt(inputA);
+    }
+  }
+  
+  let inputB = document.getElementById("b").value;
+  if (inputB.trim() !== "") {
+    if (!isNaN(inputB)) {
+      b = parseInt(inputB);
+    }
+  }
+  
+  let inputC = document.getElementById("c").value;
+  if (inputC.trim() !== "") {
+    if (!isNaN(inputC)) {
+      c = parseInt(inputC);
+    }
+  }    
+}
+
+function resetSquare() {
+for (let i=0; i<square.length;i++) {
+square[i].status = "dead";
+//drawSquare(square[i]);
+//console.log("shdausdhaus");
+}
+square.forEach(drawSquare);
+}
+
+
+
+
+
+// event listeners
+
+
+  const updateButton = document.getElementById('update');
+  updateButton.addEventListener('click', updateSquares);
+
+  const resetButton = document.getElementById('resetSquare');
+  resetButton.addEventListener('click', resetSquare);
+
+  canvas.addEventListener("click", handleClick);
+
+
+// draw all squares on the canvas
+square.forEach(drawSquare);
+
+
+// event listening a b c
+
+const sab = document.getElementById('sab');
+sab.addEventListener('click', setAB);
+
+
+</script>
+
+
+
+</body>
+</html>
