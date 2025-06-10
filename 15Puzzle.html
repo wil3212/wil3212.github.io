@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="C:\Users\User\Desktop\html Shinanigans\jquery-3.6.3.js"></script>
+
+<title>15 Puzzle</title>
+</head>
+
+
+<body>
+<a>Created: 06/02/2023</a>
+<br>
+<a>Finished: 08/02/2023</a>
+<br>
+<a style="user-select:none" href="C:\Users\User\Desktop\html Shinanigans\Damas.html">Damas</a>
+<br>
+<a href="QrCodeShenanigans.html">QrCodeShenanigans</a>
+<br>
+<a href="Life.html">Life</a>
+<br>
+
+
+<style>
+body {
+	text-align: center;
+  background-color: lightblue;
+	user-select:none;
+}
+</style>
+
+
+
+
+
+
+
+<script>
+ let juuj = []
+
+
+function allowDrop(ev) {
+  if(ev.target.tagName.toLowerCase() === 'div' && ev.target.hasChildNodes() == false && (((Number(String(event.target.id[1])) == Number(String(old[1]))) && ((Number(String(event.target.id[0])) + 1 == Number(String(old[0]))) || (Number(String(event.target.id[0])) - 1 == Number(String(old[0]))))) || ((Number(String(event.target.id[0])) == Number(String(old[0]))) && ((Number(String(event.target.id[1])) + 1 == Number(String(old[1]))) || (Number(String(event.target.id[1])) - 1 == Number(String(old[1]))))))){ev.preventDefault();};      //   ev.target é o <div> ou <img>
+
+// (((Number(String(event.target.id[1])) == Number(String(old[1]))) && ((Number(String(event.target.id[0])) + 1 == Number(String(old[0]))) || (Number(String(event.target.id[0])) - 1 == Number(String(old[0]))))) || ****** ((Number(String(event.target.id[0])) == Number(String(old[0]))) && ((Number(String(event.target.id[1])) + 1 == Number(String(old[1]))) || (Number(String(event.target.id[1])) - 1 == Number(String(old[1]))))))
+			
+			// console.log(ev.dataTransfer.parentNode.id);
+//console.log(old);
+	              // console.log("This cell is on the line " + String(event.target.id[0]));                      // Number(String(event.target.id[0])) = x
+                      // console.log("This cell is on the column " + String(event.target.id[1]));		     // Number(String(event.target.id[1])) = y
+														     // Number(String(old[0]))		   = X
+  }
+
+
+
+
+
+//
+//  if(event.target.tagName.toLowerCase() === 'div' && ev.target.hasChildNodes() == false){ev.preventDefault();};      //   ev.target é o <div> ou <img>
+//
+//(((Number(String(event.target.id[1])) == Number(String(old[1]))) && ((Number(String(event.target.id[0])) + 1 == Number(String(old[0]))) || (Number(String(event.target.id[0])) - 1 == Number(String(old[0]))))) || ****** ((Number(String(event.target.id[0])) == Number(String(old[0]))) && ((Number(String(event.target.id[1])) + 1 == Number(String(old[1]))) || (Number(String(event.target.id[1])) - 1 == Number(String(old[1]))))))
+//
+//
+
+
+
+
+
+let old = 0
+console.log(old);
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+	console.log(ev.target.parentNode.id);
+	old = ev.target.parentNode.id
+  console.log(old);
+	
+}
+
+function drop(ev) {
+ 
+ 
+ // ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+//      console.log(document.getElementById(data));
+//      console.log(ev.target);
+	var Legume = document.createTextNode("This sucks!");	
+	//ev.target.appendChild(Legume);
+}
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style> 
+.cell1 {
+display: inline-block;
+border: 5px outset red;
+background-color: lightpink;
+text-align: center;
+height: 50px;
+width: 50px;
+
+}
+
+.cell2 {
+display: inline-block;
+border: 5px outset orange;
+background-color: lightpink;
+text-align: center;
+height: 50px;
+width: 50px;
+}
+
+.cell3 {
+display: inline-block;
+border: 5px outset yellow;
+background-color: lightpink;
+text-align: center;
+height: 50px;
+width: 50px;
+}
+
+.cell4 {
+display: inline-block;
+border: 5px outset lime;
+background-color: lightpink;
+text-align: center;
+height: 50px;
+width: 50px;
+}
+
+</style>
+
+
+
+
+<!--
+<img id="drag1" src="lul.png" draggable="true" ondragstart="drag(event)" width="49" height="49"> 
+<img id="drag2" src="lul2.jfif" draggable="true" ondragstart="drag(event)" width="49" height="49">
+-->
+
+
+
+<img id="i1" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\1.jfif" draggable="true" ondragstart="drag(event)" width="49" height="49">
+<img id="i2" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\2.png" draggable="true" ondragstart="drag(event)" width="49" height="49">
+<img id="i3" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\3.webp" draggable="true" ondragstart="drag(event)" width="49" height="49">
+<img id="i4" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\4.jpg" draggable="true" ondragstart="drag(event)" width="49" height="49">
+
+<img id="i5" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\5.jpg" draggable="true" ondragstart="drag(event)" width="49" height="49">
+<img id="i6" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\6.jfif" draggable="true" ondragstart="drag(event)" width="49" height="49">
+<img id="i7" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\7.jpeg" draggable="true" ondragstart="drag(event)" width="49" height="49">
+<img id="i8" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\8.jpg" draggable="true" ondragstart="drag(event)" width="49" height="49">
+
+<img id="i9" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\9.jpg" draggable="true" ondragstart="drag(event)" width="49" height="49">
+<img id="i10" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\10.webp" draggable="true" ondragstart="drag(event)" width="49" height="49">
+<img id="i11" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\11.jpg" draggable="true" ondragstart="drag(event)" width="49" height="49">
+<img id="i12" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\12.jfif" draggable="true" ondragstart="drag(event)" width="49" height="49">
+
+<img id="i13" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\13.jpg" draggable="true" ondragstart="drag(event)" width="49" height="49">
+<img id="i14" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\14.jpeg" draggable="true" ondragstart="drag(event)" width="49" height="49">
+<img id="i15" src="C:\Users\User\Desktop\html Shinanigans\15PuzzleImages\15.png" draggable="true" ondragstart="drag(event)" width="49" height="49">
+
+
+
+
+
+
+
+
+
+<br>
+<div id="11" class="cell1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="12" class="cell1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="13" class="cell1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="14" class="cell1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<div id="21" class="cell2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="22" class="cell2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="23" class="cell2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="24" class="cell2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<div id="31" class="cell3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="32" class="cell3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="33" class="cell3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="34" class="cell3" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<div id="41" class="cell4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="42" class="cell4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="43" class="cell4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<div id="44" class="cell4" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<script>
+
+document.getElementById('11').appendChild(document.getElementById('i5'));
+document.getElementById('12').appendChild(document.getElementById('i7'));
+document.getElementById('13').appendChild(document.getElementById('i13'));
+document.getElementById('14').appendChild(document.getElementById('i3'));
+
+document.getElementById('21').appendChild(document.getElementById('i9'));
+document.getElementById('22').appendChild(document.getElementById('i14'));
+document.getElementById('23').appendChild(document.getElementById('i11'));
+document.getElementById('24').appendChild(document.getElementById('i1'));
+
+document.getElementById('31').appendChild(document.getElementById('i8'));
+document.getElementById('32').appendChild(document.getElementById('i12'));
+document.getElementById('33').appendChild(document.getElementById('i10'));
+document.getElementById('34').appendChild(document.getElementById('i6'));
+
+document.getElementById('41').appendChild(document.getElementById('i2'));
+document.getElementById('42').appendChild(document.getElementById('i4'));
+document.getElementById('43').appendChild(document.getElementById('i15'));
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
