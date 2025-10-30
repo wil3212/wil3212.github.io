@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>15 Puzzle Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-info">
+            <h1>15 Puzzle Game</h1>
+            <p>
+                <a href="../../index.html">← Back to Home</a> |
+                <a href="../game-of-life/index.html">Game of Life →</a>
+            </p>
+            <p>Drag tiles or click on them to move them into the empty space. Arrange them in order from 1 to 15!</p>
+        </div>
+
+        <div class="move-counter">
+            Moves: <span id="move-count">0</span>
+        </div>
+
+        <div class="win-message" id="win-message">
+            🎉 You Win! 🎉
+        </div>
+
+        <div class="puzzle-board">
+            <div class="puzzle-row">
+                <div id="11" class="cell cell1"></div>
+                <div id="12" class="cell cell1"></div>
+                <div id="13" class="cell cell1"></div>
+                <div id="14" class="cell cell1"></div>
+            </div>
+            <div class="puzzle-row">
+                <div id="21" class="cell cell2"></div>
+                <div id="22" class="cell cell2"></div>
+                <div id="23" class="cell cell2"></div>
+                <div id="24" class="cell cell2"></div>
+            </div>
+            <div class="puzzle-row">
+                <div id="31" class="cell cell3"></div>
+                <div id="32" class="cell cell3"></div>
+                <div id="33" class="cell cell3"></div>
+                <div id="34" class="cell cell3"></div>
+            </div>
+            <div class="puzzle-row">
+                <div id="41" class="cell cell4"></div>
+                <div id="42" class="cell cell4"></div>
+                <div id="43" class="cell cell4"></div>
+                <div id="44" class="cell cell4"></div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="shuffle-btn" class="btn">Shuffle</button>
+            <button id="reset-btn" class="btn">Reset</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

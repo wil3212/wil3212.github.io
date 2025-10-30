@@ -1,0 +1,136 @@
+body {
+    text-align: center;
+    background-color: lightblue;
+    user-select: none;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.game-container {
+    display: inline-block;
+    margin: 20px auto;
+}
+
+.game-info {
+    margin-bottom: 20px;
+}
+
+.game-info a {
+    color: #333;
+    text-decoration: none;
+    margin: 5px;
+}
+
+.game-info a:hover {
+    text-decoration: underline;
+}
+
+.puzzle-board {
+    display: inline-block;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.cell {
+    display: inline-block;
+    text-align: center;
+    height: 60px;
+    width: 60px;
+    margin: 2px;
+    vertical-align: top;
+    transition: border-color 0.3s;
+}
+
+.cell1 {
+    border: 5px outset red;
+    background-color: lightpink;
+}
+
+.cell2 {
+    border: 5px outset orange;
+    background-color: lightpink;
+}
+
+.cell3 {
+    border: 5px outset yellow;
+    background-color: lightpink;
+}
+
+.cell4 {
+    border: 5px outset lime;
+    background-color: lightpink;
+}
+
+.cell:hover:empty {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.tile {
+    width: 60px;
+    height: 60px;
+    cursor: grab;
+    display: block;
+}
+
+.tile:active {
+    cursor: grabbing;
+}
+
+.puzzle-row {
+    display: block;
+    margin: 0;
+    padding: 0;
+}
+
+.controls {
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #45a049;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.move-counter {
+    font-size: 18px;
+    margin: 10px;
+    font-weight: bold;
+}
+
+.win-message {
+    display: none;
+    font-size: 24px;
+    color: #4CAF50;
+    font-weight: bold;
+    margin: 20px;
+    animation: pulse 1s infinite;
+}
+
+.win-message.show {
+    display: block;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}

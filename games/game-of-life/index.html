@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conway's Game of Life</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-info">
+        <h1>Conway's Game of Life</h1>
+        <p>
+            <a href="../../index.html">← Back to Home</a> |
+            <a href="../15-puzzle/index.html">15 Puzzle →</a>
+        </p>
+    </div>
+
+    <canvas id="canvas"></canvas>
+
+    <div class="controls">
+        <div class="control-group">
+            <h3>Main Controls</h3>
+            <button class="button" id="toggle-button">Start</button>
+            <button class="button" id="update">Step</button>
+            <button class="button" id="random">Random</button>
+            <button class="button danger" id="resetSquare">Reset</button>
+        </div>
+
+        <div class="control-group">
+            <h3>Preset Patterns</h3>
+            <div class="preset-buttons">
+                <button class="button preset-btn" id="glider-btn">Glider</button>
+                <button class="button preset-btn" id="blinker-btn">Blinker</button>
+                <button class="button preset-btn" id="pulsar-btn">Pulsar</button>
+            </div>
+        </div>
+
+        <div class="control-group">
+            <h3>Speed Control</h3>
+            <input type="text" id="delayTime" placeholder="Delay (ms), default 80">
+            <button class="button" onclick="setDelayTime()">Set Speed</button>
+        </div>
+
+        <div class="control-group">
+            <h3>Game Rules</h3>
+            <input type="text" id="a" placeholder="Min survive (default 2)">
+            <input type="text" id="b" placeholder="Max survive (default 3)">
+            <input type="text" id="c" placeholder="Birth count (default 3)">
+            <button class="button" id="sab">Apply Rules</button>
+            <div class="rules-info">
+                If a live cell has fewer than <strong>Min</strong> or more than <strong>Max</strong> neighbors, it dies.<br>
+                If a dead cell has exactly <strong>Birth count</strong> neighbors, it becomes alive.
+            </div>
+        </div>
+
+        <div class="control-group pattern-lab">
+            <h3>🔬 Pattern Lab</h3>
+            <p class="rules-info">Draw a pattern and analyze its behavior!</p>
+            <canvas id="lab-canvas"></canvas>
+            <div style="margin-top: 15px;">
+                <button class="button" id="analyze-btn">🔍 Analyze Pattern</button>
+                <button class="button" id="clear-lab-btn">Clear Lab</button>
+                <button class="button preset-btn" id="copy-to-main-btn">Copy to Main</button>
+            </div>
+            <div id="analysis-result" class="analysis-result"></div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
